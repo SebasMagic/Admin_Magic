@@ -1,0 +1,8 @@
+export const proyectos = [
+  { id: "1", nombre: "Rediseño E-commerce", clienteId: "1", estado: "Activo", equipo: ["1", "2"], progreso: 75, tareasTotal: 20, tareasCompletadas: 15, fechaInicio: "01/01/2025", fechaFin: "31/03/2025", descripcion: "Rediseño completo de la plataforma de ventas online." },
+  { id: "2", nombre: "App Portal Clientes", clienteId: "2", estado: "Pausado", equipo: ["3", "4"], progreso: 40, tareasTotal: 30, tareasCompletadas: 12, fechaInicio: "15/02/2025", fechaFin: "30/06/2025", descripcion: "Desarrollo de aplicacion movil para gestion de clientes." },
+  { id: "3", nombre: "Auditoria Tecnica", clienteId: "3", estado: "Completado", equipo: ["1", "5"], progreso: 100, tareasTotal: 10, tareasCompletadas: 10, fechaInicio: "01/10/2024", fechaFin: "15/11/2024", descripcion: "Auditoria de infraestructura web actual." },
+  { id: "4", nombre: "Campaña Lanzamiento", clienteId: "4", estado: "Activo", equipo: ["2", "3", "5"], progreso: 20, tareasTotal: 15, tareasCompletadas: 3, fechaInicio: "01/03/2025", fechaFin: "30/04/2025", descripcion: "Estrategia digital para nuevo producto." },
+  { id: "5", nombre: "Optimizacion Performance", clienteId: "6", estado: "Activo", equipo: ["1", "4"], progreso: 90, tareasTotal: 8, tareasCompletadas: 7, fechaInicio: "10/01/2025", fechaFin: "28/02/2025", descripcion: "Mejora de tiempos de carga." },
+  { id: "6", nombre: "Migracion Cloud", clienteId: "7", estado: "Activo", equipo: ["3", "4", "5"], progreso: 60, tareasTotal: 25, tareasCompletadas: 15, fechaInicio: "01/02/2025", fechaFin: "15/05/2025", descripcion: "Migracion de servidores a AWS." }
+];
