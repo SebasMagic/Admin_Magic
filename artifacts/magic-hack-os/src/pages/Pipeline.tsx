@@ -9,9 +9,9 @@ import { DataTable, Column } from "@/components/ui/DataTable";
 import { KanbanBoard, KanbanColumn } from "@/components/ui/KanbanBoard";
 import { KanbanCard } from "@/components/ui/KanbanCard";
 import { CurrencyDisplay } from "@/components/ui/CurrencyDisplay";
-import { propuestas } from "@/data/propuestas";
+import { propuestas as propuestasData } from "@/data/propuestas";
 
-type Propuesta = typeof propuestas[0];
+type Propuesta = typeof propuestasData[0];
 
 const COLUMNS: KanbanColumn[] = [
   { id: "Lead", label: "Lead" },
@@ -35,6 +35,14 @@ const tableCols: Column<Propuesta>[] = [
 export default function Pipeline() {
   const [view, setView] = useState<"kanban" | "lista">("kanban");
   const [selected, setSelected] = useState<Propuesta | null>(null);
+  const [propuestas, setPropuestas] = useState<Propuesta[]>(propuestasData);
+
+  const handleMove = (itemId: string, newColumnId: string) => {
+    setPropuestas((prev) =>
+      prev.map((p) => (p.id === itemId ? { ...p, estado: newColumnId } : p))
+    );
+    setSelected((prev) => (prev && prev.id === itemId ? { ...prev, estado: newColumnId } : prev));
+  };
 
   return (
     <PageLayout>
@@ -61,24 +69,29 @@ export default function Pipeline() {
       </PageHeader>
 
       {view === "kanban" ? (
-        <KanbanBoard
-          columns={COLUMNS}
-          items={propuestas}
-          getColumnId={(p) => p.estado}
-          renderCard={(p) => (
-            <KanbanCard onClick={() => setSelected(p)}>
-              <p className="font-semibold text-white text-sm mb-1">{p.prospecto}</p>
-              <Badge estado={p.servicio} />
-              <p className="text-xs font-mono text-white mt-2">
-                <CurrencyDisplay amount={p.total} moneda={p.moneda as "COP" | "USD"} />
-              </p>
-              <div className="flex items-center justify-between mt-2">
-                <span className="text-[11px] text-[#9ca3af]">{p.contacto}</span>
-                <span className="text-[11px] text-[#9ca3af]">{p.diasCreado}d</span>
-              </div>
-            </KanbanCard>
-          )}
-        />
+        <>
+          <p className="text-xs text-[#9ca3af] mb-3">Arrastra las tarjetas entre columnas para cambiar su estado.</p>
+          <KanbanBoard
+            columns={COLUMNS}
+            items={propuestas}
+            getColumnId={(p) => p.estado}
+            getItemId={(p) => p.id}
+            onItemMove={handleMove}
+            renderCard={(p, drag) => (
+              <KanbanCard onClick={() => setSelected(p)} drag={drag}>
+                <p className="font-semibold text-white text-sm mb-1">{p.prospecto}</p>
+                <Badge estado={p.servicio} />
+                <p className="text-xs font-mono text-white mt-2">
+                  <CurrencyDisplay amount={p.total} moneda={p.moneda as "COP" | "USD"} />
+                </p>
+                <div className="flex items-center justify-between mt-2">
+                  <span className="text-[11px] text-[#9ca3af]">{p.contacto}</span>
+                  <span className="text-[11px] text-[#9ca3af]">{p.diasCreado}d</span>
+                </div>
+              </KanbanCard>
+            )}
+          />
+        </>
       ) : (
         <div className="bg-[#111111] border border-[#004c1e] rounded-lg overflow-hidden">
           <DataTable columns={tableCols} data={propuestas} onRowClick={setSelected} emptyText="Sin propuestas" />
@@ -110,8 +123,22 @@ export default function Pipeline() {
               <p className="text-sm text-white">{selected.descripcion}</p>
             </div>
             <div className="flex gap-3 pt-3" style={{ borderTop: "1px solid #004c1e" }}>
-              <Btn variant="primary" className="flex-1" data-testid="btn-marcar-win">Marcar como Win</Btn>
-              <Btn variant="ghost" className="flex-1" data-testid="btn-marcar-lost">Marcar como Lost</Btn>
+              <Btn
+                variant="primary"
+                className="flex-1"
+                data-testid="btn-marcar-win"
+                onClick={() => { handleMove(selected.id, "Win"); setSelected(null); }}
+              >
+                Marcar como Win
+              </Btn>
+              <Btn
+                variant="ghost"
+                className="flex-1"
+                data-testid="btn-marcar-lost"
+                onClick={() => { handleMove(selected.id, "Lost"); setSelected(null); }}
+              >
+                Marcar como Lost
+              </Btn>
             </div>
           </div>
         )}

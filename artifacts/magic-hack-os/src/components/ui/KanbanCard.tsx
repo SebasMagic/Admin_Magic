@@ -1,17 +1,26 @@
+import type { DragHandlers } from "./KanbanBoard";
+
 interface KanbanCardProps {
   children: React.ReactNode;
   onClick?: () => void;
+  drag?: DragHandlers;
 }
 
-export function KanbanCard({ children, onClick }: KanbanCardProps) {
+export function KanbanCard({ children, onClick, drag }: KanbanCardProps) {
   return (
     <div
-      className="bg-[#111111] rounded-lg p-3 cursor-pointer transition-all duration-150"
-      style={{ border: "1px solid #004c1e" }}
+      className="bg-[#111111] rounded-lg p-3 transition-all duration-150"
+      style={{
+        border: "1px solid #004c1e",
+        cursor: drag ? "grab" : "pointer",
+      }}
       onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.borderColor = "#00fe65"; (e.currentTarget as HTMLDivElement).style.boxShadow = "0 0 0 1px rgba(0,254,101,0.1)"; }}
       onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.borderColor = "#004c1e"; (e.currentTarget as HTMLDivElement).style.boxShadow = "none"; }}
+      onMouseDown={(e) => { if (drag) (e.currentTarget as HTMLDivElement).style.cursor = "grabbing"; }}
+      onMouseUp={(e) => { if (drag) (e.currentTarget as HTMLDivElement).style.cursor = "grab"; }}
       onClick={onClick}
       data-testid="kanban-card"
+      {...drag}
     >
       {children}
     </div>
