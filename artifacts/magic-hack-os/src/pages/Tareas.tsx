@@ -3,8 +3,8 @@ import { Plus, LayoutGrid, List } from "lucide-react";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Btn } from "@/components/ui/Btn";
-import { Badge } from "@/components/ui/Badge";
-import { Avatar } from "@/components/ui/Avatar";
+import { Badge } from "@/components/ui/AppBadge";
+import { Avatar } from "@/components/ui/AppAvatar";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import { SidePanel } from "@/components/ui/SidePanel";
 import { DataTable, Column } from "@/components/ui/DataTable";
@@ -76,7 +76,7 @@ export default function Tareas() {
         />
       ) : (
         <div className="bg-[#111111] border border-[#004c1e] rounded-lg overflow-hidden">
-          <DataTable columns={tableCols} data={tareas} onRowClick={setSelected} emptyText="Sin tareas" />
+          <DataTable columns={tableCols} data={tareas} onRowClick={(row) => setSelected(row)} emptyText="Sin tareas" />
         </div>
       )}
 

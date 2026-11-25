@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { KPICard } from "@/components/ui/KPICard";
-import { Badge } from "@/components/ui/Badge";
+import { Badge } from "@/components/ui/AppBadge";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import { DataTable, Column } from "@/components/ui/DataTable";
 import { clientes } from "@/data/clientes";

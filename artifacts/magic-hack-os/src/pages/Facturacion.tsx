@@ -3,7 +3,7 @@ import { Plus, Check, Minus } from "lucide-react";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Btn } from "@/components/ui/Btn";
-import { Badge } from "@/components/ui/Badge";
+import { Badge } from "@/components/ui/AppBadge";
 import { KPICard } from "@/components/ui/KPICard";
 import { SidePanel } from "@/components/ui/SidePanel";
 import { DataTable, Column } from "@/components/ui/DataTable";
@@ -62,7 +62,7 @@ export default function Facturacion() {
       </div>
 
       <div className="bg-[#111111] border border-[#004c1e] rounded-lg overflow-hidden">
-        <DataTable columns={cols} data={filtered} onRowClick={setSelected} emptyText="Sin facturas" />
+        <DataTable columns={cols} data={filtered} onRowClick={(row) => setSelected(row)} emptyText="Sin facturas" />
       </div>
 
       <SidePanel open={!!selected} onClose={() => setSelected(null)} title={selected?.consecutivo ?? ""} width={520}>

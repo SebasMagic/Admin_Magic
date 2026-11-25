@@ -2,7 +2,7 @@ import { Plus } from "lucide-react";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Btn } from "@/components/ui/Btn";
-import { Badge } from "@/components/ui/Badge";
+import { Badge } from "@/components/ui/AppBadge";
 import { KPICard } from "@/components/ui/KPICard";
 import { DataTable, Column } from "@/components/ui/DataTable";
 import { CurrencyDisplay } from "@/components/ui/CurrencyDisplay";
