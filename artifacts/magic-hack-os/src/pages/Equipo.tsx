@@ -1,6 +1,6 @@
 import { PageLayout } from "@/components/layout/PageLayout";
 import { PageHeader } from "@/components/ui/PageHeader";
-import { Avatar } from "@/components/ui/Avatar";
+import { Avatar } from "@/components/ui/AppAvatar";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import { equipo } from "@/data/equipo";
 import { tareas } from "@/data/tareas";

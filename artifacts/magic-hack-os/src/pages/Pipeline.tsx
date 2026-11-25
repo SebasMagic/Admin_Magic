@@ -3,7 +3,7 @@ import { Plus, List, LayoutGrid } from "lucide-react";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Btn } from "@/components/ui/Btn";
-import { Badge } from "@/components/ui/Badge";
+import { Badge } from "@/components/ui/AppBadge";
 import { SidePanel } from "@/components/ui/SidePanel";
 import { DataTable, Column } from "@/components/ui/DataTable";
 import { KanbanBoard, KanbanColumn } from "@/components/ui/KanbanBoard";
@@ -94,7 +94,7 @@ export default function Pipeline() {
         </>
       ) : (
         <div className="bg-[#111111] border border-[#004c1e] rounded-lg overflow-hidden">
-          <DataTable columns={tableCols} data={propuestas} onRowClick={setSelected} emptyText="Sin propuestas" />
+          <DataTable columns={tableCols} data={propuestas} onRowClick={(row) => setSelected(row)} emptyText="Sin propuestas" />
         </div>
       )}
 
